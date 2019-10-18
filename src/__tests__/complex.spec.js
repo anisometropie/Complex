@@ -11,6 +11,13 @@ describe('Complex class', () => {
       expect(z).toHaveProperty('imaginary')
     })
   })
+  describe('fromAngle static method', () => {
+    it('should create a 1 from an modulus and an argument ', () => {
+      const z = Complex.fromAngle(1, 0)
+      expect(z.real).toBeCloseTo(1)
+      expect(z.imaginary).toBeCloseTo(0)
+    })
+  })
   describe('clone method', () => {
     it('should create a new complex with the same real and imaginary parts', () => {
       const z = new Complex(1, 2)
@@ -18,13 +25,6 @@ describe('Complex class', () => {
       expect(clone).toBeInstanceOf(Complex)
       expect(clone.real).toEqual(1)
       expect(clone.imaginary).toEqual(2)
-    })
-  })
-  describe('fromAngle static method', () => {
-    it('should create a 1 from an modulus and an argument ', () => {
-      const z = Complex.fromAngle(1, 0)
-      expect(z.real).toBeCloseTo(1)
-      expect(z.imaginary).toBeCloseTo(0)
     })
   })
   describe('set method', () => {
@@ -162,6 +162,34 @@ describe('Complex class', () => {
       z.argument = 0
       expect(z.modulus).toBeCloseTo(1)
       expect(z.argument).toBeCloseTo(0)
+    })
+  })
+  describe('static exp', () => {
+    test('exp(i+i) = 1.47 + 2.29i', () => {
+      const z = new Complex(1, 1)
+      const expZ = Complex.exp(z)
+      expect(expZ.real).toBeCloseTo(1.47)
+      expect(expZ.imaginary).toBeCloseTo(2.29)
+    })
+    test('exp(3-i) = 10.85 - 16.90i', () => {
+      const z = new Complex(3, -1)
+      const expZ = Complex.exp(z)
+      expect(expZ.real).toBeCloseTo(10.85)
+      expect(expZ.imaginary).toBeCloseTo(-16.9)
+    })
+  })
+  describe('static square', () => {
+    test('(1+i) ^ 2 = 2i', () => {
+      const z = new Complex(1, 1)
+      const expZ = Complex.square(z)
+      expect(expZ.real).toBeCloseTo(0)
+      expect(expZ.imaginary).toBeCloseTo(2)
+    })
+    test('(3-i)^2 = 8-6i', () => {
+      const z = new Complex(3, -1)
+      const expZ = Complex.square(z)
+      expect(expZ.real).toBeCloseTo(8)
+      expect(expZ.imaginary).toBeCloseTo(-6)
     })
   })
 })

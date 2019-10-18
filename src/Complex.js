@@ -71,6 +71,18 @@ class Complex {
   set argument(θ) {
     this.set(this.modulus * Math.cos(θ), this.modulus * Math.sin(θ))
   }
+
+  static exp(z) {
+    const real = Math.exp(z.real) * Math.cos(z.imaginary)
+    const imaginary = Math.exp(z.real) * Math.sin(z.imaginary)
+    return new Complex(real, imaginary)
+  }
+
+  static square(z) {
+    const real = z.real ** 2 - z.imaginary ** 2
+    const imaginary = 2 * z.real * z.imaginary
+    return new Complex(real, imaginary)
+  }
 }
 
 export default Complex
