@@ -48,13 +48,8 @@ class Complex {
   }
 
   multiplyBy(z) {
-    if (typeof z === 'number') {
-      this.set(this.real * z, this.imaginary * z)
-    } else if (z instanceof Complex) {
-      const real = this.real * z.real - this.imaginary * z.imaginary
-      const imaginary = this.real * z.imaginary + this.imaginary * z.real
-      this.set(real, imaginary)
-    }
+    const result = Complex.multiply(this, z)
+    this.set(result.real, result.imaginary)
   }
 
   rotate(angle) {
