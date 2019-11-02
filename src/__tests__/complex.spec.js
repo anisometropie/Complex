@@ -10,6 +10,22 @@ describe('Complex class', () => {
       expect(z).toHaveProperty('real')
       expect(z).toHaveProperty('imaginary')
     })
+    it('should create object with given real and imaginary parts', () => {
+      const z = new Complex(39,40)
+      expect(z.real).toEqual(39)
+      expect(z.imaginary).toEqual(40)
+    })
+    it('should create object given only a real part', () => {
+      const z = new Complex(4)
+      expect(z.real).toEqual(4)
+      expect(z.imaginary).toEqual(0)
+    })
+    it('should create object given a Complex number object', () => {
+      const z = new Complex(39,40)
+      const ζ = new Complex(z)
+      expect(ζ.real).toEqual(39)
+      expect(ζ.imaginary).toEqual(40)
+    })
   })
   describe('fromAngle static method', () => {
     it('should create a 1 from an modulus and an argument ', () => {
@@ -60,18 +76,52 @@ describe('Complex class', () => {
       expect(a.imaginary).toEqual(2)
     })
   })
-  describe('multiply method', () => {
+
+  describe('static multiply method', () => {
+    it('should multiply two complex numbers', () => {
+      const z1 = new Complex(1, 4)
+      const z2 = new Complex(2, 3)
+      const result = Complex.multiply(z1, z2)
+      expect(result.real).toEqual(-10)
+      expect(result.imaginary).toEqual(11)
+    })
+    it('should multiply a complex with a real', () => {
+      const z = new Complex(1, 4)
+      const x = 3
+      const result = Complex.multiply(z, x)
+      expect(result.real).toEqual(3)
+      expect(result.imaginary).toEqual(12)
+    })
+    it('should multiply a real with a complex', () => {
+      const z = new Complex(3, 7)
+      const x = 2
+      const result = Complex.multiply(x, z)
+      expect(result.real).toEqual(6)
+      expect(result.imaginary).toEqual(14)
+    })
+    it('should multiply a real with a real', () => {
+      const x = 2
+      const y = 14
+      const result = Complex.multiply(x, y)
+      expect(result.real).toEqual(28)
+      expect(result.imaginary).toEqual(0)
+    })
+  })
+
+  
+
+  describe('multiplyBy method', () => {
     it('should multiply the complex with another complex', () => {
       const z1 = new Complex(1, 4)
       const z2 = new Complex(2, 3)
-      z1.multiply(z2)
+      z1.multiplyBy(z2)
       expect(z1.real).toEqual(-10)
       expect(z1.imaginary).toEqual(11)
     })
     it('should multiply the complex with a number', () => {
       const z = new Complex(1, 4)
       const x = 3
-      z.multiply(x)
+      z.multiplyBy(x)
       expect(z.real).toEqual(3)
       expect(z.imaginary).toEqual(12)
     })

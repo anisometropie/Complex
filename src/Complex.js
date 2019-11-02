@@ -1,7 +1,12 @@
 class Complex {
   constructor(a = 0, b = 0) {
-    this.real = a
-    this.imaginary = b
+    if (a instanceof Complex) {
+      this.real = a.real
+      this.imaginary = a.imaginary
+    } else {
+      this.real = a
+      this.imaginary = b
+    }
   }
 
   static fromAngle(modulus, argument) {
@@ -34,7 +39,15 @@ class Complex {
     }
   }
 
-  multiply(z) {
+  static multiply(z1, z2) {
+    const ζ1 = new Complex(z1)
+    const ζ2 = new Complex(z2)
+    const real = ζ1.real * ζ2.real - ζ1.imaginary * ζ2.imaginary
+    const imaginary = ζ1.real * ζ2.imaginary + ζ1.imaginary * ζ2.real
+    return new Complex(real, imaginary)
+  }
+
+  multiplyBy(z) {
     if (typeof z === 'number') {
       this.set(this.real * z, this.imaginary * z)
     } else if (z instanceof Complex) {
@@ -48,7 +61,7 @@ class Complex {
     const a = Math.cos(angle)
     const b = Math.sin(angle)
     const z = new Complex(a, b)
-    this.multiply(z)
+    this.multiplyBy(z)
   }
 
   get modulus() {
