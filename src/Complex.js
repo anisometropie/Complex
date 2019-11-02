@@ -27,16 +27,14 @@ class Complex {
   }
 
   static sum(a, b) {
-    return new Complex(a.real + b.real, a.imaginary + b.imaginary)
+    const α = new Complex(a)
+    const β = new Complex(b)
+    return new Complex(α.real + β.real, α.imaginary + β.imaginary)
   }
 
   add(z) {
-    if (typeof z === 'number') {
-      this.real += z
-    } else if (z instanceof Complex) {
-      this.real += z.real
-      this.imaginary += z.imaginary
-    }
+    const result = Complex.sum(this, z)
+    this.set(result.real, result.imaginary)
   }
 
   static multiply(z1, z2) {

@@ -11,7 +11,7 @@ describe('Complex class', () => {
       expect(z).toHaveProperty('imaginary')
     })
     it('should create object with given real and imaginary parts', () => {
-      const z = new Complex(39,40)
+      const z = new Complex(39, 40)
       expect(z.real).toEqual(39)
       expect(z.imaginary).toEqual(40)
     })
@@ -21,7 +21,7 @@ describe('Complex class', () => {
       expect(z.imaginary).toEqual(0)
     })
     it('should create object given a Complex number object', () => {
-      const z = new Complex(39,40)
+      const z = new Complex(39, 40)
       const ζ = new Complex(z)
       expect(ζ.real).toEqual(39)
       expect(ζ.imaginary).toEqual(40)
@@ -58,6 +58,27 @@ describe('Complex class', () => {
       const z = Complex.sum(a, b)
       expect(z.real).toEqual(4)
       expect(z.imaginary).toEqual(7)
+    })
+    it('should sum complex and real', () => {
+      const a = new Complex(1, 2)
+      const b = 7
+      const z = Complex.sum(a, b)
+      expect(z.real).toEqual(8)
+      expect(z.imaginary).toEqual(2)
+    })
+    it('should sum real and complex', () => {
+      const a = -1
+      const b = new Complex(5, 3)
+      const z = Complex.sum(a, b)
+      expect(z.real).toEqual(4)
+      expect(z.imaginary).toEqual(3)
+    })
+    it('should sum real and real', () => {
+      const a = 3
+      const b = 31
+      const z = Complex.sum(a, b)
+      expect(z.real).toEqual(34)
+      expect(z.imaginary).toEqual(0)
     })
   })
   describe('add method', () => {
@@ -107,8 +128,6 @@ describe('Complex class', () => {
       expect(result.imaginary).toEqual(0)
     })
   })
-
-  
 
   describe('multiplyBy method', () => {
     it('should multiply the complex with another complex', () => {
