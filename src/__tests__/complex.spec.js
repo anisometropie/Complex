@@ -261,4 +261,18 @@ describe('Complex class', () => {
       expect(expZ.imaginary).toBeCloseTo(-6)
     })
   })
+  describe('toString', () => {
+    it('should display just the real part if imaginary is zero', () => {
+      const z = new Complex(3.34, 0)
+      expect(z.toString()).toEqual('3.34')
+    })
+    it('should display just the imaginary part if real is zero', () => {
+      const z = new Complex(0, 3.34)
+      expect(z.toString()).toEqual('3.34i')
+    })
+    it('should display the whole number', () => {
+      const z = new Complex(3.34, 7.25)
+      expect(z.toString()).toEqual('3.34 + 7.25i')
+    })
+  })
 })

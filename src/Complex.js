@@ -1,3 +1,5 @@
+import { round2decimals } from './helpers'
+
 class Complex {
   constructor(a = 0, b = 0) {
     if (a instanceof Complex) {
@@ -88,6 +90,13 @@ class Complex {
     const real = z.real ** 2 - z.imaginary ** 2
     const imaginary = 2 * z.real * z.imaginary
     return new Complex(real, imaginary)
+  }
+
+  toString() {
+    const real = this.real === 0 ? '' : round2decimals(this.real)
+    const imaginary = this.imaginary === 0 ? '' : round2decimals(this.imaginary)
+    const plusSign = real === '' || imaginary === '' ? '' : ' + '
+    return this.imaginary === 0 ? real : `${real}${plusSign}${imaginary}i`
   }
 }
 
