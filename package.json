@@ -1,12 +1,12 @@
 {
-  "name": "complex",
-  "version": "1.0.0",
+  "name": "simple-complex",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "",
+  "author": "Valentin Chanas",
   "license": "ISC",
   "babel": {
     "plugins": [
