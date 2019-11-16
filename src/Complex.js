@@ -1,4 +1,4 @@
-import { round2decimals } from './helpers'
+import { roundNdecimals } from './helpers'
 
 class Complex {
   constructor(a = 0, b = 0) {
@@ -93,10 +93,13 @@ class Complex {
   }
 
   toString() {
-    const real = this.real === 0 ? '' : round2decimals(this.real)
-    const imaginary = this.imaginary === 0 ? '' : round2decimals(this.imaginary)
+    const round2 = roundNdecimals(2)
+    const real = this.real === 0 ? '' : round2(this.real)
+    const imaginary = this.imaginary === 0 ? '' : round2(this.imaginary)
     const plusSign = real === '' || imaginary === '' ? '' : ' + '
-    return this.imaginary === 0 ? real : `${real}${plusSign}${imaginary}i`
+    return this.imaginary === 0
+      ? String(real)
+      : `${real}${plusSign}${imaginary}i`
   }
 }
 
