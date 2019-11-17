@@ -1,4 +1,4 @@
-import { roundNdecimals } from './helpers'
+const { roundNdecimals } = require('./helpers')
 
 class Complex {
   constructor(a = 0, b = 0) {
@@ -103,4 +103,4 @@ class Complex {
   }
 }
 
-export default Complex
+module.exports = Complex

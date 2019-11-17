@@ -1,4 +1,4 @@
-import Complex from '../Complex'
+const Complex = require('../Complex')
 
 const { PI } = Math
 

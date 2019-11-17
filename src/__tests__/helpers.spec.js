@@ -1,4 +1,4 @@
-import { roundNdecimals } from '../helpers'
+const { roundNdecimals } = require('../helpers')
 
 describe('round2decimals', () => {
   describe('2 decimals', () => {
