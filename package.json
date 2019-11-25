@@ -1,6 +1,6 @@
 {
   "name": "simple-complex",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "",
   "main": "src/Complex.js",
   "scripts": {
