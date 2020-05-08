@@ -94,12 +94,24 @@ class Complex {
 
   toString() {
     const round2 = roundNdecimals(2)
-    const real = this.real === 0 ? '' : round2(this.real)
-    const imaginary = this.imaginary === 0 ? '' : round2(this.imaginary)
-    const plusSign = real === '' || imaginary === '' ? '' : ' + '
-    return this.imaginary === 0
+    const smallRealPart = Math.abs(this.real) <= 0.001
+    const smallImaginaryPart = Math.abs(this.imaginary) <= 0.001
+    const real = smallRealPart ? '' : round2(this.real)
+    const imaginary =
+      smallImaginaryPart || Math.abs(this.imaginary) - 1 <= 0.001
+        ? ''
+        : Math.abs(round2(this.imaginary))
+    const sign =
+      smallRealPart || smallImaginaryPart
+        ? ''
+        : this.imaginary < 0
+        ? ' − '
+        : ' + '
+    return smallRealPart && smallImaginaryPart
+      ? '0'
+      : smallImaginaryPart
       ? String(real)
-      : `${real}${plusSign}${imaginary}i`
+      : `${real}${sign}${imaginary}i`
   }
 }
 
