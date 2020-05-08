@@ -3,4 +3,8 @@ const roundNdecimals = dec => num => {
   return Math.round(num * pow) / pow
 }
 
-module.exports = { roundNdecimals }
+const distance = (a, b) => Math.abs(b - a)
+
+const areClose = (a, b, numDigits) => distance(a, b) < 10 ** -numDigits / 2
+
+module.exports = { roundNdecimals, distance, areClose }
