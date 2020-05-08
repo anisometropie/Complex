@@ -93,25 +93,30 @@ class Complex {
   }
 
   toString() {
-    const round2 = roundNdecimals(2)
+    const abs2Decimal = num => Math.abs(roundNdecimals(2)(num))
     const smallRealPart = areClose(this.real, 0, 2)
     const smallImaginaryPart = areClose(this.imaginary, 0, 2)
-    const real = smallRealPart ? '' : round2(this.real)
-    const imaginary =
-      smallImaginaryPart || areClose(Math.abs(this.imaginary), 1, 2)
-        ? ''
-        : Math.abs(round2(this.imaginary))
+
+    const realPartSign = this.real < 0 ? '−' : ''
+    const real = smallRealPart ? '' : `${realPartSign}${abs2Decimal(this.real)}`
     const sign =
       smallRealPart || smallImaginaryPart
         ? ''
         : this.imaginary < 0
         ? ' − '
         : ' + '
+    const imaginaryPartSign = this.imaginary < 0 && sign === '' ? '−' : ''
+    const imaginary = smallImaginaryPart
+      ? ''
+      : areClose(Math.abs(this.imaginary), 1, 2)
+      ? `${imaginaryPartSign}i`
+      : `${imaginaryPartSign}${abs2Decimal(this.imaginary)}i`
+
     return smallRealPart && smallImaginaryPart
       ? '0'
       : smallImaginaryPart
-      ? String(real)
-      : `${real}${sign}${imaginary}i`
+      ? real
+      : `${real}${sign}${imaginary}`
   }
 }
 

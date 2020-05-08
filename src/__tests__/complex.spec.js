@@ -262,29 +262,41 @@ describe('Complex class', () => {
     })
   })
   describe('toString', () => {
-    it('should display just the real part if imaginary is zero', () => {
+    it('should display zero', () => {
       const z = new Complex(0, 0)
       expect(z.toString()).toEqual('0')
     })
-    it('should display just the real part if imaginary is zero', () => {
+    it('should display only the real part if imaginary is zero', () => {
       const z = new Complex(3.34, 0)
       expect(z.toString()).toEqual('3.34')
     })
-    it('should display just the real part if imaginary <= 0.001', () => {
+    it('should display only the real part if imaginary is zero', () => {
+      const z = new Complex(-3.34, 0)
+      expect(z.toString()).toEqual('−3.34')
+    })
+    it('should display only the real part if imaginary <= 0.001', () => {
       const z = new Complex(3.34, 0.001)
       expect(z.toString()).toEqual('3.34')
     })
 
-    it('should display just the imaginary part if real is zero', () => {
+    it('should display only the imaginary part if real is zero', () => {
+      const z = new Complex(0, 1)
+      expect(z.toString()).toEqual('i')
+    })
+    it('should display only the imaginary part if real is zero', () => {
+      const z = new Complex(0, -1)
+      expect(z.toString()).toEqual('−i')
+    })
+    it('should display only the imaginary part if real is zero', () => {
       const z = new Complex(0, 3.34)
       expect(z.toString()).toEqual('3.34i')
     })
-    it('should display just the imaginary part if real <= 0.001', () => {
-      const z = new Complex(0.001, 3.34)
-      expect(z.toString()).toEqual('3.34i')
+    it('should display only the imaginary part if real is zero', () => {
+      const z = new Complex(0, -33.34)
+      expect(z.toString()).toEqual('−33.34i')
     })
-    it('should display just the imaginary part if real <= 0.001', () => {
-      const z = new Complex(0.0001, 3.34)
+    it('should display only the imaginary part if real <= 0.001', () => {
+      const z = new Complex(0.001, 3.34)
       expect(z.toString()).toEqual('3.34i')
     })
 
@@ -298,13 +310,12 @@ describe('Complex class', () => {
     })
     it('should display a complex number', () => {
       const z = new Complex(-0.5, -0.5)
-      expect(z.toString()).toEqual('-0.5 − 0.5i')
+      expect(z.toString()).toEqual('−0.5 − 0.5i')
     })
     it('should display a complex number', () => {
       const z = new Complex(3.34, 7.25)
       expect(z.toString()).toEqual('3.34 + 7.25i')
     })
-
     it('should display a Complex number with negative imaginary part', () => {
       const z = new Complex(3.34, -7.25)
       expect(z.toString()).toEqual('3.34 − 7.25i')
