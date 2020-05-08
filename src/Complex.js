@@ -1,4 +1,4 @@
-const { roundNdecimals } = require('./helpers')
+const { roundNdecimals, distance, areClose } = require('./helpers')
 
 class Complex {
   constructor(a = 0, b = 0) {
@@ -94,11 +94,11 @@ class Complex {
 
   toString() {
     const round2 = roundNdecimals(2)
-    const smallRealPart = Math.abs(this.real) <= 0.001
-    const smallImaginaryPart = Math.abs(this.imaginary) <= 0.001
+    const smallRealPart = areClose(this.real, 0, 2)
+    const smallImaginaryPart = areClose(this.imaginary, 0, 2)
     const real = smallRealPart ? '' : round2(this.real)
     const imaginary =
-      smallImaginaryPart || Math.abs(this.imaginary) - 1 <= 0.001
+      smallImaginaryPart || areClose(Math.abs(this.imaginary), 1, 2)
         ? ''
         : Math.abs(round2(this.imaginary))
     const sign =

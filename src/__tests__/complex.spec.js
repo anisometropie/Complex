@@ -289,9 +289,22 @@ describe('Complex class', () => {
     })
 
     it('should display a complex number', () => {
+      const z = new Complex(0.5, 0.5)
+      expect(z.toString()).toEqual('0.5 + 0.5i')
+    })
+    it('should display a complex number', () => {
+      const z = new Complex(0.5, -0.5)
+      expect(z.toString()).toEqual('0.5 − 0.5i')
+    })
+    it('should display a complex number', () => {
+      const z = new Complex(-0.5, -0.5)
+      expect(z.toString()).toEqual('-0.5 − 0.5i')
+    })
+    it('should display a complex number', () => {
       const z = new Complex(3.34, 7.25)
       expect(z.toString()).toEqual('3.34 + 7.25i')
     })
+
     it('should display a Complex number with negative imaginary part', () => {
       const z = new Complex(3.34, -7.25)
       expect(z.toString()).toEqual('3.34 − 7.25i')
